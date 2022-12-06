@@ -3,8 +3,16 @@ const app = express()
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
+const { Pool, Client } = require('pg');
+const config = require('./config');
 
 const port = 3000;
+
+const pool = new Pool(config);
+
+pool.on('error', function (err, client) {
+  console.error('idle client error', err.message, err.stack);
+});
 
 passport.use(new LocalStrategy(function verify(username, password, cb) {
   db.get('SELECT * FROM users WHERE username = ?', [username], function (err, user) {
