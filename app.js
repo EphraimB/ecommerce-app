@@ -46,6 +46,10 @@ app.post('/login/password',
     res.redirect('/~' + req.user.username);
   });
 
+app.post('register', (req, res) => {
+  
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
