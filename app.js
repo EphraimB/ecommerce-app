@@ -4,11 +4,17 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
 const { Pool, Client } = require('pg');
-const config = require('./config');
+const dotenv = require('dotenv');
 
 const port = 3000;
 
-const pool = new Pool(config);
+const pool = new Pool({
+  user: process.env.POSTGRES_USER,
+  host: process.env.POSTGRES_HOST,
+  database: process.env.POSTGRES_DB,
+  password: process.env.POSTGRES_PASSWORD,
+  port: process.env.POSTGRES_PORT,
+});
 
 pool.on('error', function (err, client) {
   console.error('idle client error', err.message, err.stack);

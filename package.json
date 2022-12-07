@@ -9,6 +9,7 @@
   "author": "Ephraim Becker",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "node-postgres": "^0.6.2",
     "passport": "^0.6.0",
